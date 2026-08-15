@@ -32,5 +32,6 @@ export default defineConfig({
   },
 
   integrations: [sitemap()],
-  site: "https://grunge.pages.dev"
+  site: 'https://martijnmeeldijk.github.io',
+  base: '/sound',
 });

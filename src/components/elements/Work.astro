@@ -16,6 +16,12 @@ import Heading from "../elements/Heading.astro";
 const { slug, featuredImage, title, client, category } = Astro.props;
 ---
 
+<style>
+  .featured {
+    color: black;
+    text-shadow: none;
+  }
+</style>
 <div class="group lg:m-auto">
   <a href=`/sound/works/${slug}`>
     <div
@@ -24,7 +30,7 @@ const { slug, featuredImage, title, client, category } = Astro.props;
       <div
         class="absolute top-2 left-2 z-40 bg-base-900 border-2 border-base-100 px-4 flex gap-2"
       >
-        <Text variant={"lg"} class="text-base-100">{category}</Text>
+        <Text variant={"lg"} class="text-base-100 featured">{category}</Text>
         <Image src={symbol} alt="UI Symbol" width={30} loading="lazy" />
       </div>
       <div

@@ -20,7 +20,12 @@
         "Web Design",
         "Art Direction",
         "Product Design",
-        "Branding"
+        "Branding",
+        "Techno",
+        "Rock",
+        "Kleinkunst",
+        "Hip-hop",
+        "Singer/songwriter"
       ]
     },
     "services": {
@@ -57,6 +62,10 @@
     "isDraft": {
       "type": "boolean"
     },
+    "spotify_url": {
+      "type": "string",
+      "format": "uri"
+    },
     "$schema": {
       "type": "string"
     }
@@ -75,6 +84,7 @@
     "liveSite",
     "description",
     "isFeatured",
-    "isDraft"
+    "isDraft",
+    "spotify_url"
   ]
 }

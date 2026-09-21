@@ -17,66 +17,91 @@ import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
 import { getCollection } from "astro:content";
 export const getStaticPaths = (async () => {
-    const works = await getCollection("works", ({data}) => !data.isDraft)
-    return works.map((work) => ({
-        params: {
-            page: work.data.slug,
-        },
-        props: {
-            work,
-        }
-    }));
+  const works = await getCollection("works", ({ data }) => !data.isDraft);
+  return works.map((work) => ({
+    params: {
+      page: work.data.slug,
+    },
+    props: {
+      work,
+    },
+  }));
 }) satisfies GetStaticPaths;
 
 // props
 const { work } = Astro.props;
 const { Content } = await render(work);
-const { title, client, category, services, year, description, featuredImage, imageTwo, imageThree, imageFour, liveSite } = work.data;
+const {
+  title,
+  client,
+  category,
+  services,
+  year,
+  description,
+  featuredImage,
+  imageTwo,
+  imageThree,
+  imageFour,
+  liveSite,
+  spotify_url,
+} = work.data;
 const details = [
-    { heading: "Client", text: `${client}` },
-    { heading: "Category", text: `${category}` },
-    { heading: "Services", text: `${services}` },
-    { heading: "Year", text: `${year}` }
-]
+  { heading: "Client", text: `${client}` },
+  { heading: "Category", text: `${category}` },
+  { heading: "Services", text: `${services}` },
+  { heading: "Year", text: `${year}` },
+];
 ---
 
-<Layout 
-    title={`Work - ${title}`}
-    description={description}
->
-    <Container variant={'xl'} aria-label="Work Details" class="items-center">
-        <Heading tagName="h1" tagSize="h1" class="text-center">{title}</Heading>
-        <div class="w-full md:h-[600px] h-[300px]">
-            <ImageContainer src={featuredImage} alt={title} />
-        </div>
-        <div class="flex flex-col gap-7 md:grid md:grid-cols-4">
-            {
-                details.map((detail) => (
-                    <div class="text-center">
-                        <Heading tagName="h2" tagSize="h4" class="mb-2">{detail.heading}</Heading>
-                        <Text variant={'sm'} class="text-base-900">{detail.text}</Text>
-                    </div>
-                ))
-            }
-        </div>
-        <Link variant={'button'} href={liveSite}>Live Site</Link>
-        <div class="md:max-w-3xl text-base-900">
-            <Text variant={'xl'}>{description}</Text>
-        </div>
-        <div class="flex md:flex-row flex-col gap-7">
-            <div>
-                <ImageContainer src={imageTwo} alt={title} />
-            </div>
-            <div>
-                <ImageContainer src={imageThree} alt={title} />
-            </div>
-        </div>
-        <article class="markdown-content md:max-w-3xl flex flex-col gap-4">
-            <Content />
-        </article>
-        <div class="w-full md:h-[600px] h-[300px]">
-            <ImageContainer src={imageFour} alt={title} />
-        </div>
-        <Link variant={'button'} href="/works">All Works</Link>
-    </Container>
+<Layout title={`Work - ${title}`} description={description}>
+  <Container variant={"xl"} aria-label="Work Details" class="items-center">
+    <Heading tagName="h2" tagSize="h2" class="text-center">{title}</Heading>
+    <!-- <div class="w-full md:h-[600px] h-[300px]">
+      <ImageContainer src={featuredImage} alt={title} />
+    </div> -->
+    <div class="w-full md:h-[600px] h-[300px]">
+      <iframe
+        data-testid="embed-iframe"
+        style="border-radius:12px"
+        src={spotify_url}
+        width="100%"
+        height="352"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+    </div>
+    <div class="flex flex-col gap-7 md:grid md:grid-cols-4">
+      {
+        details.map((detail) => (
+          <div class="text-center">
+            <Heading tagName="h2" tagSize="h4" class="mb-2">
+              {detail.heading}
+            </Heading>
+            <Text variant={"sm"} class="text-base-900">
+              {detail.text}
+            </Text>
+          </div>
+        ))
+      }
+    </div>
+    <Link variant={"button"} href={liveSite}>Live Site</Link>
+    <div class="md:max-w-3xl text-base-900">
+      <Text variant={"xl"}>{description}</Text>
+    </div>
+    <div class="flex md:flex-row flex-col gap-7">
+      <div>
+        <ImageContainer src={imageTwo} alt={title} />
+      </div>
+      <div>
+        <ImageContainer src={imageThree} alt={title} />
+      </div>
+    </div>
+    <article class="markdown-content md:max-w-3xl flex flex-col gap-4">
+      <Content />
+    </article>
+    <div class="w-full md:h-[600px] h-[300px]">
+      <ImageContainer src={imageFour} alt={title} />
+    </div>
+    <Link variant={"button"} href="/works">All Works</Link>
+  </Container>
 </Layout>

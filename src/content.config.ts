@@ -8,7 +8,7 @@ const works = defineCollection({
         title: z.string().max(50),
         slug: z.string(),
         client: z.string().max(50),
-        category: z.enum(["UI/UX Design", "Web Design", "Art Direction", "Product Design", "Branding"]),
+        category: z.enum(["UI/UX Design", "Web Design", "Art Direction", "Product Design", "Branding", "Techno", "Rock", "Kleinkunst", "Hip-hop", "Singer/songwriter"]),
         services: z.string().max(65),
         year: z.string().max(4),
         featuredImage: image(),
@@ -18,7 +18,8 @@ const works = defineCollection({
         liveSite: z.url(),
         description: z.string().max(350),
         isFeatured: z.boolean(),
-        isDraft: z.boolean()
+        isDraft: z.boolean(),
+        spotify_url: z.url(),
     })
 })
 

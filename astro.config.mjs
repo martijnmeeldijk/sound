@@ -33,6 +33,6 @@ export default defineConfig({
 
   integrations: [sitemap()],
   site: 'https://martijnmeeldijk.github.io',
-  base: '/sound',
+  base: '',
   trailingSlash: "ignore"
 });

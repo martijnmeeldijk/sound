@@ -9,9 +9,97 @@ import Link from "../../elements/Link.astro";
 import { getCollection } from "astro:content";
 const works = await getCollection("works");
 const featuredWorks = works.filter((work) => work.data.isFeatured === true);
+const artists = [
+  "Gender Reveal Atomic Bomb",
+  "Stoelen en banken",
+  "Liam Grant",
+  "PIXIEDUST",
+  "Monkey Mask",
+  "Wim Claeys",
+  "Mayple",
+  "Boom Boom Cactus",
+  "SEXTC",
+  "Jessica King",
+  "Abelaer",
+  "Plan C",
+  "La Merde",
+  "My Lennis",
+  "Dark Entries",
+  "Ad.He.Mar",
+  "Jolan Decaestecker",
+  "Blue Rooster",
+  "M.ara",
+  "Parkaparaplu",
+  "CHES ",
+  "Winterblind",
+  "My Friend The Atom",
+  "Leontien",
+  "Labasheeda ",
+  "Grondstof",
+  "MAQUILLAGE ",
+  "Killed By Hippies",
+  "Platypussies",
+  "VURT",
+  "Arbeidsongeschikt",
+  "Radio Hell",
+  "Salmonella",
+  "The Spyral",
+  "Frederik de Spiegeleer",
+  "Sander Braeckman",
+  "Black Label",
+  "Marcel Pragana",
+  "Lisette",
+  "Granddaddy pluto",
+  "WILMA ",
+  "Isi and the band",
+  "Doe Maar Niet",
+  "Leander Vertriest",
+  "Cashin\' around",
+  "SUNA",
+  "Floemée",
+  "Tweeden Asem",
+  "Glenn Jones ",
+  "Silke Hamers ",
+  "Annalena Fröhlich",
+  "Machteld ",
+  "Masse",
+  "Schaekers",
+  "We, who live",
+  "Helen Francis",
+  "Arnaud Soetens",
+  "Bode 7",
+  "Agatan Saks",
+  "Yde Asja",
+  "Gianna Relli",
+  "It was a storm",
+  "Divan David",
+  "Justees",
+  "Twow",
+  "Lightspeed",
+  "Last night in Osaka",
+  "Mazeys ",
+  "Amber Bosteels",
+  "Reena Riot",
+  " and more",
+];
 ---
 
 <Container variant={"lg"} class="items-center">
+  <Heading tagName="h3" tagSize="h3" class="text-center">
+    Artists I've worked with:
+    <br />
+    <br />
+    <p
+      class="lg:text-24/10 md:text-20/8 text-16/6 font-grunge uppercase text-base-900 tracking-tight"
+    >
+      {
+        artists.map((artist) => {
+          return artist + " · ";
+        })
+      }
+    </p>
+  </Heading>
+  <Heading tagName="h2" tagSize="h2" class="text-center" />
   <Heading tagName="h2" tagSize="h2" class="text-center">
     Featured Works
     <p
